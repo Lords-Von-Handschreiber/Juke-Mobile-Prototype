@@ -20,8 +20,8 @@ namespace SelfHosted
                 new { id = RouteParameter.Optional });
 
             cfg.Routes.MapHttpRoute(
-    "Default", "{res}",
-    new { controller = "Home", res = RouteParameter.Optional });
+                "Default", "{*res}",
+                new { controller = "StaticFile", res = RouteParameter.Optional });
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(cfg))
             {
