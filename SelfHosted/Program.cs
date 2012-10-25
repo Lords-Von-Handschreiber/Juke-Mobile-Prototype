@@ -25,8 +25,9 @@ namespace SelfHosted
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(cfg))
             {
+                Console.WriteLine("Initializing server.");
                 server.OpenAsync().Wait();
-                Console.WriteLine(cfg.BaseAddress);
+                Console.WriteLine("Server ready at: " + cfg.BaseAddress);
                 Console.WriteLine("Press Enter to quit.");
                 Console.ReadLine();
             }
