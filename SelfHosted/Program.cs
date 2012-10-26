@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using System.Web.Routing;
+
 
 namespace SelfHosted
 {
@@ -14,6 +17,10 @@ namespace SelfHosted
         static void Main(string[] args)
         {
             var cfg = new HttpSelfHostConfiguration("http://localhost:1337");
+
+            cfg.MaxReceivedMessageSize = 16L * 1024 * 1024 * 1024;
+            cfg.TransferMode = TransferMode.StreamedRequest;
+            cfg.ReceiveTimeout = TimeSpan.FromMinutes(20);            
 
             cfg.Routes.MapHttpRoute(
                 "API Default", "api/{controller}/{id}",
@@ -31,6 +38,6 @@ namespace SelfHosted
                 Console.WriteLine("Press Enter to quit.");
                 Console.ReadLine();
             }
-        }
+        }        
     }
 }
