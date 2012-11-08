@@ -11,6 +11,12 @@ namespace SelfHosted.Controllers
     public abstract class RavenController : ApiController
     {
         public IDocumentSession Db { get; set; }
+        public bool Autosave { get; set; }
+
+        public RavenController(bool autosave = true)
+        {
+            this.Autosave = autosave;
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -20,6 +26,8 @@ namespace SelfHosted.Controllers
                 {
                     using (Db)
                     {
+                        if (this.Autosave)
+                            Db.SaveChanges();
                         Db.Dispose();
                         Db = null;
                     }
