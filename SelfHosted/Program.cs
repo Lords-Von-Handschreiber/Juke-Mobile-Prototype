@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Raven.Client;
+using Raven.Client.Document;
+using Raven.Client.Embedded;
+using SelfHosted.Helper;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -29,6 +34,11 @@ namespace SelfHosted
             cfg.Routes.MapHttpRoute(
                 "Default", "{*res}",
                 new { controller = "StaticFile", res = RouteParameter.Optional });
+
+            var documentStore = new EmbeddableDocumentStore { DataDirectory = new FileInfo("db/").DirectoryName };
+            documentStore.Initialize();
+            cfg.Filters.Add(new RavenDbApiAttribute(documentStore));
+
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(cfg))
             {

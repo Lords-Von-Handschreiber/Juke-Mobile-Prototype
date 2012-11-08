@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SelfHosted.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,7 @@ using System.Web.Http;
 
 namespace SelfHosted
 {
-    public class ProductsController : ApiController
+    public class ProductsController : RavenController
     {
         Product[] products = new Product[]  
         {  
@@ -16,25 +17,21 @@ namespace SelfHosted
             new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }  
         };
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> Get()
         {
             return products;
         }
 
-        public Product GetProductById(int id)
+        public Product Get(int id)
         {
+            return DocumentSession.Load<Product>(id);
+
             var product = products.FirstOrDefault((p) => p.Id == id);
             if (product == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             return product;
-        }
-
-        public IEnumerable<Product> GetProductsByCategory(string category)
-        {
-            return products.Where(p => string.Equals(p.Category, category,
-                    StringComparison.OrdinalIgnoreCase));
         }
     }
 }
