@@ -10,8 +10,9 @@ using System.Net.Http.Headers;
 using System.Net.Http.Formatting;
 using System.IO;
 using System.Collections.ObjectModel;
+using SelfHosted.Model;
 
-namespace SelfHosted
+namespace SelfHosted.Controllers
 {    
     public class FileUploadController: ApiController
     {

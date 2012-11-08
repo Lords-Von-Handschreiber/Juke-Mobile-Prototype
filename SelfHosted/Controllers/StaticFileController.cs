@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace SelfHosted
+namespace SelfHosted.Controllers
 {
     public class StaticFileController : ApiController
     {

@@ -119,13 +119,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\RavenController.cs" />
-    <Compile Include="FileResult.cs" />
-    <Compile Include="FileUploadController.cs" />
+    <Compile Include="Controllers\RavenController.cs" />
+    <Compile Include="Model\FileResult.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Helper\RavenDbApiAttribute.cs" />
-    <Compile Include="StaticFileController.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductsController.cs" />
+    <Compile Include="Controllers\StaticFileController.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

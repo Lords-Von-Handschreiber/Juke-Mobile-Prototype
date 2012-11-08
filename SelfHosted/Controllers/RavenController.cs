@@ -6,22 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace SelfHosted.Controller
+namespace SelfHosted.Controllers
 {
     public abstract class RavenController : ApiController
     {
-        public IDocumentSession DocumentSession { get; set; }
+        public IDocumentSession Db { get; set; }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (DocumentSession != null)
+                if (Db != null)
                 {
-                    using (DocumentSession)
+                    using (Db)
                     {
-                        DocumentSession.Dispose();
-                        DocumentSession = null;
+                        Db.Dispose();
+                        Db = null;
                     }
                 }
             }

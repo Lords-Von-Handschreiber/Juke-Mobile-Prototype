@@ -1,5 +1,5 @@
 ﻿using Raven.Client;
-using SelfHosted.Controller;
+using SelfHosted.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace SelfHosted.Helper
             if (controller == null)
                 return;
 
-            controller.DocumentSession = documentStore.OpenSession();
+            controller.Db = documentStore.OpenSession();
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
@@ -35,7 +35,7 @@ namespace SelfHosted.Helper
             if (controller == null)
                 return;
 
-            controller.DocumentSession.Dispose();
+            controller.Db.Dispose();
         }
     }
 

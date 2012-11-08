@@ -35,10 +35,9 @@ namespace SelfHosted
                 "Default", "{*res}",
                 new { controller = "StaticFile", res = RouteParameter.Optional });
 
-            var documentStore = new EmbeddableDocumentStore { DataDirectory = new FileInfo("db/").DirectoryName };
-            documentStore.Initialize();
-            cfg.Filters.Add(new RavenDbApiAttribute(documentStore));
-
+            var db = new EmbeddableDocumentStore { DataDirectory = new FileInfo("db/").DirectoryName };
+            db.Initialize();
+            cfg.Filters.Add(new RavenDbApiAttribute(db));
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(cfg))
             {
