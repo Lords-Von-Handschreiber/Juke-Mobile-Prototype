@@ -29,6 +29,11 @@ namespace SelfHosted.Controllers
             //Db.Store(p3);
             //Db.SaveChanges();
 
+            //var p1 = new SelfHosted.Model.Product { Name = "Hammer", Category = "Hardware", Price = 16.99M };
+
+            //Db.Store(p1);
+            //Db.SaveChanges();
+
             return Db.Query<Product>();
         }
 

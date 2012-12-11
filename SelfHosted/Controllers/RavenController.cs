@@ -13,7 +13,7 @@ namespace SelfHosted.Controllers
         public IDocumentSession Db { get; set; }
         public bool Autosave { get; set; }
 
-        public RavenController(bool autosave = true)
+        public RavenController(bool autosave = false)
         {
             this.Autosave = autosave;
         }
